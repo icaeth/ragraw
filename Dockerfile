@@ -9,6 +9,8 @@ COPY requirements.txt .
 
 # Install required Python packages
 RUN pip install -r requirements.txt --default-timeout=100 future
+RUN pip install "fastapi[standard]"
+RUN pip install bitsandbytes
 
 # Copy the rest of the application files to the container's working directory
 COPY . .

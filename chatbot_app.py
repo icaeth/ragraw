@@ -5,7 +5,8 @@ import time
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM 
 from transformers import pipeline
 import torch 
-import textwrap 
+import textwrap
+from fastapi import FastAPI
 from langchain.document_loaders import PyPDFLoader, DirectoryLoader, PDFMinerLoader 
 from langchain.text_splitter import RecursiveCharacterTextSplitter 
 from langchain.embeddings import SentenceTransformerEmbeddings 
@@ -14,6 +15,13 @@ from langchain.llms import HuggingFacePipeline
 from langchain.chains import RetrievalQA 
 from constants import CHROMA_SETTINGS
 from streamlit_chat import message
+
+app = FastAPI()
+
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
 
 st.set_page_config(layout="wide")
 
