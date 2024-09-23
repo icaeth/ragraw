@@ -16,12 +16,6 @@ from langchain.chains import RetrievalQA
 from constants import CHROMA_SETTINGS
 from streamlit_chat import message
 
-app = FastAPI()
-
-
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
 
 st.set_page_config(layout="wide")
 
@@ -166,7 +160,11 @@ def main():
             # Display conversation history using Streamlit messages
             if st.session_state["generated"]:
                 display_conversation(st.session_state)
-        
+        app = FastAPI()
+        @app.get("/get")
+        async def root():
+            return {"message": "Hello World"}
+
 
         
 
